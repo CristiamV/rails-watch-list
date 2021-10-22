@@ -1,7 +1,8 @@
-<h1> Write a bookmark en <%= @list.name%> </h1>
-
-<%= simple_form_for [ @list, @bookmark ] do |f| %>  
-  <%= f.input :movie_id, label: "Movies", as: :select, collection: @movies.each { |movie| movie.title }%>
-  <%= f.input :comment , label: "Your Comment"%>
-  <%= f.submit "Submit bookmark", class: "btn btn-primary" %>
-<% end %>
+<div class = "container mt-5 pt-3">
+  <h1> Write a bookmark en <%= @list.name%> </h1>
+  <%= simple_form_for [ @list, @bookmark ] do |f| %>  
+    <%= f.input :movie_id, label: "Movies", as: :select, collection: @movies.each { |movie| movie.title }%>
+    <%= f.input :comment , label: "Your Comment"%>
+    <%= f.submit "Submit bookmark", class: "btn btn-primary" %>
+  <% end %>
+</div>
