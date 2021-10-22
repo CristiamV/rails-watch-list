@@ -24,7 +24,7 @@
                             <div class = "d-flex align-items-end justify-content-between pt-4">
                                 <div class = "bookmark-comment d-flex mt-3">
                                     <i class="far fa-comment-dots"></i>
-                                    <h6 class="card-text ml-2 align-self-end"><small class="text-muted"><%=bookmark.comment.capitalize!%></small></h6>
+                                    <h6 class="card-text ml-2 align-self-end"><small class="text-muted"><%=bookmark.comment%></small></h6>
                                 </div>
                                 <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: {confirm: "Estas seguro?"}, class:"bookmark-destroy btn btn-danger" %>
                             </div>
@@ -35,14 +35,35 @@
         <%end%>
     </div>  
     <br>
-   <h3> <%= link_to "Back to list list", lists_path %> </h3>
+    <hr class="my-5">
+	<div class="row">
+		<div class="col-12 col-sm-6">
+		<h3>Reviews</h3>
+		<% if @list.reviews.empty? %>
+			<small><em class="text-muted">Be the first one to review this list</em></small>
+		<% end %>
+		<% @list.reviews.each do |review| %>
+			<div>
+			<% review.rating.times do %>
+				<i class="fas fa-star star-yellow"></i>
+			<% end %>
+			<small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+			<p class="mb-0"><%= review.comment %></p>
+			</div>
+			<hr>
+		<% end %>
+		</div>
+		<div class="col-12 col-sm-6">
+		<div class="bg-white rounded p-3">
+			<h5>Add your review</h5>
+			<%= simple_form_for [@list, @review] do |f| %>
+			<%= f.input :comment, placeholder: 'Add your review here...' %>
+			<%= f.input :rating, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: { id: 'review_rating' } %>
+			<%= f.submit class:'btn btn-flat' %>
+			<% end %>
+		</div>
+		</div>
+	</div>
+    <h3> <%= link_to "Back to list list", lists_path %> </h3>
 </div>
 
-<%
-=begin%>
- <div> 
-    <object type="text/html" data="/lists/<%=@list.id%>/bookmarks/new" width="800px" height="600px" style="overflow:auto;border:5px ridge blue">
-    </object>
- </div> 
-<%
-=end%>
