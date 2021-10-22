@@ -1,0 +1,11 @@
+<div class="bg-white text-dark">
+    <%= simple_form_for (list) do |f| %>
+        <%= f.input :name, label: "List name"%>
+    <%
+=begin%>
+ <%= f.input :category, label: "Category" , as: :select, collection: ['chinese', 'italian', 'japanese', 'french', 'belgian']%> 
+<%
+=end%>
+        <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+</div>

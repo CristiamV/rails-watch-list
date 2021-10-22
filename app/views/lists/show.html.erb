@@ -1,0 +1,23 @@
+<div class = "container">
+    <h1> list details <h1>
+    <div class = "d-flex flex-wrap justify-content-between">
+        <% @bookmarks.each do |bookmark|%>
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <%= image_tag bookmark.movie.poster_url, alt: "movie title", class:'card-img', width: 50%>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold"><%=bookmark.movie.title%></h6>
+                            <h6 class="card-text"><%=bookmark.movie.overview%></h6>
+                            <h6 class="card-text"><small class="text-muted"><%=bookmark.comment%></small></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>             
+        <%end%>
+    </div>  
+    <br>
+   <h3> <%= link_to "Back to list list", lists_path %> </h3>
+</div>
