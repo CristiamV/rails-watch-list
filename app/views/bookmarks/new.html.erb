@@ -2,6 +2,6 @@
 
 <%= simple_form_for [ @list, @bookmark ] do |f| %>  
   <%= f.input :movie_id, label: "Movies", as: :select, collection: @movies.each { |movie| movie.title }%>
-  <%= f.input :comment , label: "Your bookmark"%>
+  <%= f.input :comment , label: "Your Comment"%>
   <%= f.submit "Submit bookmark", class: "btn btn-primary" %>
 <% end %>

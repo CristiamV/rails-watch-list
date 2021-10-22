@@ -1,6 +1,16 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80);">
+  <div class="container">
+    <h1>Save any kind of movie</h1>
+    <p>Classic</p>    
+  </div>
+</div>
+
 <div class = "container">
-    <h1> list details <h1>
-    <div class = "d-flex flex-wrap justify-content-between">
+    <div class = "d-flex justify-content-between mt-1">
+        <h1> List details <h1>
+        <h5> <%= link_to "Add new Movie", new_list_bookmark_path(@list), class: "btn btn-success"%> </h5>
+    </div>
+    <div class = "cards d-flex flex-wrap justify-content-between">
         <% @bookmarks.each do |bookmark|%>
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
@@ -8,10 +18,16 @@
                         <%= image_tag bookmark.movie.poster_url, alt: "movie title", class:'card-img', width: 50%>
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body">
+                        <div class="bookmark-card card-body">
                             <h6 class="card-title font-weight-bold"><%=bookmark.movie.title%></h6>
                             <h6 class="card-text"><%=bookmark.movie.overview%></h6>
-                            <h6 class="card-text"><small class="text-muted"><%=bookmark.comment%></small></h6>
+                            <div class = "d-flex align-items-end justify-content-between pt-4">
+                                <div class = "bookmark-comment d-flex mt-3">
+                                    <i class="far fa-comment-dots"></i>
+                                    <h6 class="card-text ml-2 align-self-end"><small class="text-muted"><%=bookmark.comment.capitalize!%></small></h6>
+                                </div>
+                                <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: {confirm: "Estas seguro?"}, class:"bookmark-destroy btn btn-danger" %>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -21,3 +37,12 @@
     <br>
    <h3> <%= link_to "Back to list list", lists_path %> </h3>
 </div>
+
+<%
+=begin%>
+ <div> 
+    <object type="text/html" data="/lists/<%=@list.id%>/bookmarks/new" width="800px" height="600px" style="overflow:auto;border:5px ridge blue">
+    </object>
+ </div> 
+<%
+=end%>

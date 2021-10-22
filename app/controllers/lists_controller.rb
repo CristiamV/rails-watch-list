@@ -6,7 +6,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @bookmarks = Bookmark.where(params[:list_id])
+    @bookmarks = Bookmark.where(list: @list)
+    
   end
 
   def new
@@ -15,11 +16,11 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-        if @list.save 
-            redirect_to lists_path(@list), notice: 'list was successfully created.'
-        else 
-            render :new 
-        end  
+    if @list.save 
+        redirect_to list_path(@list), notice: 'list was successfully created.'
+    else 
+       render :new 
+    end  
   end
 
   private

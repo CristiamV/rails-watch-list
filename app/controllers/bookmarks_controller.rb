@@ -9,14 +9,17 @@ class BookmarksController < ApplicationController
   def create
     @bookmark = Bookmark.new(bookmark_params)    
     @bookmark.list = @list  
-    if @bookmark.save!
+    if @bookmark.save
       redirect_to list_path(@list), notice: 'Bookmark was successfully created.'
     else
       render :new
     end
   end
 
-  def destroy
+  def destroy    
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.destroy
+    redirect_to list_path(@bookmark.list)
   end
 
   private
