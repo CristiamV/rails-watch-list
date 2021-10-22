@@ -1,8 +1,16 @@
-<div class = "container mt-5 pt-3">
-  <h1> Write a bookmark en <%= @list.name%> </h1>
-  <%= simple_form_for [ @list, @bookmark ] do |f| %>  
-    <%= f.input :movie_id, label: "Movies", as: :select, collection: @movies.each { |movie| movie.title }%>
-    <%= f.input :comment , label: "Your Comment"%>
-    <%= f.submit "Submit bookmark", class: "btn btn-primary" %>
-  <% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= (cl_image_path @list.photo.key, height: 300, crop: :fill) unless @list.photo.key.nil?%>')">
+  <div class="container">
+    <h1>Save any kind of movie</h1>
+    <p><%=@list.name.capitalize%></p>    
+  </div>
+</div>
+<div class = "container d-flex justify-content-center">
+  <div class = "border border-warning bg-white p-5 mt-1 rounded-pill">
+    <h2> Write a bookmark en <%= @list.name%> list </h2>
+    <%= simple_form_for [ @list, @bookmark ] do |f| %>  
+     <%= f.input :movie_id, label: "Movies", as: :select, collection: @movies.each { |movie| movie.title }%>
+     <%= f.input :comment , label: "Your Comment"%>
+      <%= f.submit "Submit bookmark", class: "btn btn-primary ml-2" %>
+    <% end %>
+  </div>
 </div>

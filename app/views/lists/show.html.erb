@@ -1,7 +1,7 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= (cl_image_path @list.photo.key, height: 300, crop: :fill) unless @list.photo.key.nil?%>')">
   <div class="container">
     <h1>Save any kind of movie</h1>
-    <p>Classic</p>    
+    <p><%=@list.name.capitalize%></p>    
   </div>
 </div>
 
